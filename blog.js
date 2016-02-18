@@ -24,8 +24,6 @@ $(document).ready(function() {
 		}
 		if(errors.length == 0) {
 			addToFeed(title, body);
-			console.log("Title:\n" + title);
-			console.log("Body:\n" + body);
 		} else {
 			errors.forEach(function(e) {
 				console.log(e);
@@ -45,11 +43,15 @@ $(document).ready(function() {
 
 	// on click removal of posts
 	$('#feed').on("click", "span", function() {
-		console.log(this);
 		this.parentElement.parentElement.parentElement.remove();
 	});
 
 });
+
+function clearInputs() {
+	$('#postTitle').val("");
+	$('#postBody').val("");
+}
 
 function addToFeed(title, body) {
 	var postEl = $(document.createElement('div'))
@@ -70,4 +72,5 @@ function addToFeed(title, body) {
 	postEl.append(bodyEl);
 
 	$('#feed').prepend(postEl);
+	clearInputs();
 }
